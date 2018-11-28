@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
     "build": "webpack"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "html-replace-webpack-plugin": "2.5.5",
     "html-webpack-inline-plugin": "0.0.4",
     "html-webpack-plugin": "3.2.0",
     "webpack": "4.26.1",

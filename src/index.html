@@ -1,3 +1,9 @@
 <form role="form">
-  <script inline cam-script src="./src/index.js"></script>
+  <!--
+    custom control which does not use cam-variable* directives
+    but binds to the angular scope
+  -->
+  <input type="text" class="form-control" id="customField" ng-model="customerId" />
+
+  <script inline-cam cam-script @@type="text/form-script" src="./src/index.js"></script>
 </form>

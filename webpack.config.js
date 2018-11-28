@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlinePlugin = require('html-webpack-inline-plugin');
+const HtmlReplaceWebpackPlugin = require('html-replace-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -14,7 +15,11 @@ module.exports = {
       inject: false
     }),
     new HtmlWebpackInlinePlugin({
-      attribute: 'inline'
+      attribute: 'inline-cam'
+    }),
+    new HtmlReplaceWebpackPlugin({
+      pattern: '@@type',
+      replacement: 'type'
     })
   ]
 };
