@@ -1,0 +1,18 @@
+{
+  "name": "test-webpack-inline",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-inline-plugin": "0.0.4",
+    "html-webpack-plugin": "3.2.0",
+    "webpack": "4.26.1",
+    "webpack-cli": "3.1.2"
+  }
+}
