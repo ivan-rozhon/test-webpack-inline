@@ -31,7 +31,7 @@ module.exports = [
       new HtmlWebpackPlugin({
         template: 'src/index.html',
         inject: false,
-        filename: '../forms/index.html',
+        filename: '../dist/forms/index.html',
         minify: minifyOptions
       }),
       htmlWebpackInline,
@@ -49,7 +49,7 @@ module.exports = [
       new HtmlWebpackPlugin({
         template: 'src/start-form.html',
         inject: false,
-        filename: '../forms/start-form.html',
+        filename: '../dist/forms/start-form.html',
         minify: minifyOptions
       }),
       htmlWebpackInline,
