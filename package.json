@@ -7,17 +7,30 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "styles": "sass ./src/user-styles.scss ./dist/styles/user-styles.css --watch",
     "start": "webpack --watch",
+    "forms": "webpack --config webpack-forms.config.js",
+    "clear": "rimraf dist",
+    "prebuild": "concurrently \"npm run clear\" \"npm run lint\"",
     "build": "webpack",
-    "watch": "concurrently \"npm run start\" \"npm run styles\""
+    "postbuild": "npm run forms",
+    "prewatch": "npm run build",
+    "watch": "concurrently \"npm run start\" \"npm run styles\" \"npm run watch:forms\"",
+    "watch:forms": "webpack --config webpack-forms.config.js --watch",
+    "lint": "jshint ./src/*.js"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.2.3",
+    "babel-loader": "8.0.5",
     "concurrently": "4.1.0",
     "html-replace-webpack-plugin": "2.5.5",
     "html-webpack-inline-plugin": "0.0.4",
     "html-webpack-plugin": "3.2.0",
+    "jshint": "2.9.7",
+    "rimraf": "2.6.3",
     "sass": "1.15.3",
+    "terser-webpack-plugin": "1.2.1",
     "webpack": "4.28.3",
     "webpack-cli": "3.2.0"
   }

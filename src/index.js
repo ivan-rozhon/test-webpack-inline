@@ -2,7 +2,7 @@ var variableManager = camForm.variableManager;
 
 $scope.customerId = null;
 
-camForm.on('form-loaded', function() {
+camForm.on('form-loaded', () => {
   // fetch the variable 'customVariable'
   variableManager.fetchVariable('customVariable');
 });

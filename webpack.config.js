@@ -1,59 +1,52 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackInlinePlugin = require('html-webpack-inline-plugin');
-const HtmlReplaceWebpackPlugin = require('html-replace-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
-const minifyOptions = {
-  collapseWhitespace: true,
-  removeComments: true,
-  removeRedundantAttributes: true,
-  removeScriptTypeAttributes: true,
-  removeStyleLinkTypeAttributes: true,
-  useShortDoctype: true
+const rules = [
+  {
+    test: /\.js$/,
+    exclude: /(node_modules)/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env']
+      }
+    }
+  }
+];
+
+const optimization = {
+  minimizer: [
+    new TerserPlugin({
+      terserOptions: {
+        ecma: 6,
+        compress: true,
+        output: {
+          comments: false,
+          beautify: false
+        }
+      }
+    })
+  ]
 };
-
-const htmlWebpackInline = new HtmlWebpackInlinePlugin({
-  attribute: 'inline-cam'
-});
-const htmlReplaceWebpack = new HtmlReplaceWebpackPlugin({
-  pattern: '@@type',
-  replacement: 'type'
-});
 
 module.exports = [
   {
     entry: './src/index.js',
     mode: 'production',
     output: {
-      path: __dirname + '/dist',
+      path: __dirname + '/dist/temp',
       filename: 'index_bundle.js'
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: 'src/index.html',
-        inject: false,
-        filename: '../dist/forms/index.html',
-        minify: minifyOptions
-      }),
-      htmlWebpackInline,
-      htmlReplaceWebpack
-    ]
+    module: { rules: rules },
+    optimization: optimization
   },
   {
     entry: './src/start-form.js',
     mode: 'production',
     output: {
-      path: __dirname + '/dist',
+      path: __dirname + '/dist/temp',
       filename: 'start-form_bundle.js'
     },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: 'src/start-form.html',
-        inject: false,
-        filename: '../dist/forms/start-form.html',
-        minify: minifyOptions
-      }),
-      htmlWebpackInline,
-      htmlReplaceWebpack
-    ]
+    module: { rules: rules },
+    optimization: optimization
   }
 ];
